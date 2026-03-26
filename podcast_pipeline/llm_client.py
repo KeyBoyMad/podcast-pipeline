@@ -199,7 +199,7 @@ class LLMClient:
 
         for attempt in range(1, MAX_RETRIES + 1):
             try:
-                resp = requests.post(url, headers=headers, json=payload, timeout=120)
+                resp = requests.post(url, headers=headers, json=payload, timeout=300)
                 if resp.status_code == 429:
                     wait = 60 * attempt
                     logger.warning("%s 限流（429），%ds 后重试（%d/%d）...", self.provider, wait, attempt, MAX_RETRIES)
